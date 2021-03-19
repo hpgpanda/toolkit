@@ -113,7 +113,7 @@ int main(int argc, char* argv[])
     if(argc <2)
 	PrintHelp(argv[0]);
 
-    while ((ch = getopt(argc, argv, "x:a:")) != -1)
+    while ((ch = getopt(argc, argv, "x:a:h:?:")) != -1)
     {
         switch (ch)
         {
