@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include "head.h"
 #define CHAR_TO_UPPER(ch)   ((ch >= 'a' && ch <= 'z')?(ch-0x20):ch)
 
 //#define _Debug 1
@@ -15,12 +16,23 @@
 int Ascii2Hex(char *string)
 {
     char ch;
+    #ifdef _Debug
+	printf("Begin to Ascii2Hex.\n");
+	printf("%s \n", string);
+    #endif
+
     for(int i=0; i<strlen(string); i++){
         ch = string[i];
         printf("%x ",ch);
     }
     printf("\n");
-    return 0;
+
+    #ifdef _Debug
+	printf("Ascii2Hex end.\n");
+    #endif
+
+
+//    return 0;
 }
 
 
@@ -31,7 +43,7 @@ int Ascii2Hex(char *string)
   * @retval: status
   * @retval: print ascii characters
  ****************************************************/
-char Hex2Ascii(char *hex)
+int Hex2Ascii(char *hex)
 {
     int i,j;
     char ch, hexch;
@@ -83,6 +95,7 @@ char Hex2Ascii(char *hex)
         printf("%c",ch);
     }
     printf("\n");
+    return 0;
 }
 
 
@@ -93,6 +106,7 @@ char Hex2Ascii(char *hex)
   * @retval: Null
   * @retval: print help information
  ****************************************************/
+/*
 void PrintHelp(char* prog)
 {
     printf("%s usage.\n", prog);
@@ -100,12 +114,14 @@ void PrintHelp(char* prog)
     printf("%s -x abcdef -a 3031323a\n", prog);
     printf("-x: ascii, default: abcdef, Ascii to Hex\n");
     printf("-a: hex, default: 3031323a, Hex to Ascii\n");
+    printf("-c: ascii, default: abcdef, calc checksum.\n");
     printf("-?: show help information\n");
     printf("-h: show help information\n");
 }
+*/
 
 
-
+/*
 int main(int argc, char* argv[])
 {
     char ch;
@@ -138,3 +154,4 @@ int main(int argc, char* argv[])
 //    Hex2Ascii(argv[1]);
     return 1;
 }
+*/
