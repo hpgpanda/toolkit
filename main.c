@@ -25,7 +25,9 @@ int main(int argc, char* argv[])
             Ascii2Hex(optarg);
 	    strcpy(cksum, optarg);
 	    cmd=1;
+	#ifdef _Debug
 	    printf("x: %s\n", cksum);
+	#endif
             break;
         case 'a':
             Hex2Ascii(optarg);
