@@ -5,6 +5,14 @@
 #		1. ASCII to Hex
 #		2. CheckSum
 #		3. CRC
+
+Ver0.003:
+	1.New Ascii to Hex:  int Ascii2Hex(char *string, char *hex_str);
+	  add return value from hex_str. 
+	2.
+
+
+
  
 
 Ver0.002-rc:
