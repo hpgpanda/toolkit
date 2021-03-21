@@ -12,8 +12,9 @@ int main(int argc, char* argv[])
 {
     char ch;
     char cksum[256];
-    char hex_str[256];
-    int cmd=0;
+    char *ret_hex = (char *) malloc(256);
+    char *ret_ascii = (char *) malloc(256);
+    int cmd=1;
     //command option
     if(argc <2)
 	PrintHelp(argv[0]);
@@ -23,19 +24,28 @@ int main(int argc, char* argv[])
         switch (ch)
         {
         case 'x':
-            Ascii2Hex(optarg, hex_str);
+            Ascii2Hex(optarg, ret_hex);
 	    strcpy(cksum, optarg);
-	    cmd=1;
-	#ifdef _Debug
+	    cmd=0;
+	#ifdef Debug
 	    printf("x: %s\n", cksum);
+	    printf("ret_hex: %s\n", ret_hex);
 	#endif
             break;
         case 'a':
-            Hex2Ascii(optarg);
+            Hex2Ascii(optarg, ret_ascii);
+	    strcpy(cksum, optarg);
+	    cmd=1;
+	#ifdef Debug
 //	    printf("a: %s\n", optarg);
+	    printf("ret_ascii: %s\n", ret_ascii);
+	#endif
             break;
 	case 'c':
+	#ifdef Debug
 	    printf("cmd: %d\n", cmd);
+	    printf("cksum: %s\n", cksum);
+	#endif
 	    checksum(cksum, cmd);
 	    break;
         case '?':

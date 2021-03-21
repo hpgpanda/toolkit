@@ -7,10 +7,14 @@
 #		3. CRC
 
 Ver0.003:
-	1.New Ascii to Hex:  int Ascii2Hex(char *string, char *hex_str);
-	  add return value from hex_str. 
-	2.
-
+	1.New Ascii to Hex:  int Ascii2Hex(char *string, char *ret_hex);
+	  add return value from ret_hex. 
+	2.New Hex to Ascii:  int Hex2Ascii(char *string, char *ret_ascii);
+	  add return value from ret_ascii.
+	3.New Checksum
+	  add option -a and -x. 
+	  -a:  for input ascii data
+	  -x:  for input hex data
 
 
  

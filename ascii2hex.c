@@ -5,7 +5,7 @@
 #include "head.h"
 #define CHAR_TO_UPPER(ch)   ((ch >= 'a' && ch <= 'z')?(ch-0x20):ch)
 
-#define _Debug 1
+//#define Debug 1
 
 /****************************************************
   * @ascii convert hex
@@ -13,13 +13,13 @@
   * @retval: status
   * @retval: print hex value
  ****************************************************/
-int Ascii2Hex(char *string, char *hex_str)
+int Ascii2Hex(char *string, char *ret_hex)
 {
     char ch=0x0;
     char str[256];
     unsigned char hex_ch=0x0;
     int i=0;
-    #ifdef _Debug
+    #ifdef Debug
 	printf("Begin to Ascii2Hex.\n");
 	printf("%s \n", string);
     #endif
@@ -43,9 +43,9 @@ int Ascii2Hex(char *string, char *hex_str)
     str[i*2]=0x0;
     printf("\n");
 
-    strcpy(hex_str, str);
-    #ifdef _Debug
-	printf("Hex_str = %s\n", hex_str);
+    strcpy(ret_hex, str);
+    #ifdef Debug
+	printf("ret_Hex = %s\n", ret_hex);
 	printf("Ascii2Hex end.\n");
     #endif
 
@@ -61,13 +61,15 @@ int Ascii2Hex(char *string, char *hex_str)
   * @retval: status
   * @retval: print ascii characters
  ****************************************************/
-int Hex2Ascii(char *hex)
+int Hex2Ascii(char *hex, char *ret_ascii)
+//int Hex2Ascii(char *hex)
 {
     int i,j;
     char ch, hexch;
     char string[256];
+    char ascii[256];
 
-    #ifdef _Debug
+    #ifdef Debug
         printf("hex length= %ld \n", strlen(hex));
     #endif
 
@@ -80,7 +82,7 @@ int Hex2Ascii(char *hex)
     }
     string[j]=0x0;
 
-    #ifdef _Debug
+    #ifdef Debug
     //print string
         printf("string= %s\n", string);
     #endif
@@ -110,9 +112,15 @@ int Hex2Ascii(char *hex)
             exit(0);
         }
         ch=ch+hexch;
+	ascii[i]=ch;
         printf("%c",ch);
     }
     printf("\n");
+    ascii[i]=0x0;
+    strcpy(ret_ascii, ascii);
+    #ifdef Debug
+	printf("%s \n", ret_ascii);
+    #endif
     return 0;
 }
 
