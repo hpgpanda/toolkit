@@ -12,6 +12,7 @@ int main(int argc, char* argv[])
 {
     char ch;
     char cksum[256];
+    char hex_str[256];
     int cmd=0;
     //command option
     if(argc <2)
@@ -22,7 +23,7 @@ int main(int argc, char* argv[])
         switch (ch)
         {
         case 'x':
-            Ascii2Hex(optarg);
+            Ascii2Hex(optarg, hex_str);
 	    strcpy(cksum, optarg);
 	    cmd=1;
 	#ifdef _Debug

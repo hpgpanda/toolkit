@@ -5,7 +5,7 @@
 #include "head.h"
 #define CHAR_TO_UPPER(ch)   ((ch >= 'a' && ch <= 'z')?(ch-0x20):ch)
 
-//#define _Debug 1
+#define _Debug 1
 
 /****************************************************
   * @ascii convert hex
@@ -13,21 +13,39 @@
   * @retval: status
   * @retval: print hex value
  ****************************************************/
-int Ascii2Hex(char *string)
+int Ascii2Hex(char *string, char *hex_str)
 {
-    char ch;
+    char ch=0x0;
+    char str[256];
+    unsigned char hex_ch=0x0;
+    int i=0;
     #ifdef _Debug
 	printf("Begin to Ascii2Hex.\n");
 	printf("%s \n", string);
     #endif
 
-    for(int i=0; i<strlen(string); i++){
+    for(i=0; i<strlen(string); i++){
         ch = string[i];
         printf("%x ",ch);
+
+	hex_ch= (ch&0xf0)>>4;
+	if(hex_ch>0x9) 
+	    str[i*2] = hex_ch - 0xa +'A';
+	else
+	    str[i*2] = hex_ch + 0x30;
+
+	hex_ch = (ch&0xf);
+	if(hex_ch>0x9)
+	    str[i*2+1] = hex_ch-0xa +'A';
+	else 
+	    str[i*2+1] = hex_ch + '0';
     }
+    str[i*2]=0x0;
     printf("\n");
 
+    strcpy(hex_str, str);
     #ifdef _Debug
+	printf("Hex_str = %s\n", hex_str);
 	printf("Ascii2Hex end.\n");
     #endif
 
